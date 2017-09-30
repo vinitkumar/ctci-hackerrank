@@ -6,9 +6,10 @@ class Node(object):
     def __init__(self, letter):
         self.letter = letter
         self.children = set()
+        self.terminating_words_count = 1
 
     def __str__(self):
-        string = self.letter
+        string = self.letter + "(" + str(self.terminating_words_count) + ")"
         string += " ["
         for child in self.children:
             string += child.__str__()
@@ -22,6 +23,7 @@ def get_node(last_alphabet_node, character):
     """
     for child_alphabet in last_alphabet_node.children:
         if character == child_alphabet.letter:
+            child_alphabet.terminating_words_count += 1
             return child_alphabet
 
     new_child_alphabet = Node(character)
@@ -64,6 +66,7 @@ def find_in_trie(trie_root, word):
     of a word in a trie """
 
     current_characters = trie_root.children
+    trie_character = None
     for character in word:
         # print("current_word_character: ", character)
         children_matched = False
@@ -77,7 +80,10 @@ def find_in_trie(trie_root, word):
         if not children_matched:
             return 0
 
-    return count_possible_words(current_characters, 0)
+    if trie_character:
+        return trie_character.terminating_words_count
+    else:
+        return 0
 
 
 def main():
