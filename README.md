@@ -10,3 +10,4 @@ Solutions to Hackerrank problems in Python
 | Hash Tables: Ransom Note | [Problem](https://www.hackerrank.com/challenges/ctci-ransom-note/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_ransom_note.py) |
 | Linked Lists: Detect a Cycle | [Problem](https://www.hackerrank.com/challenges/ctci-linked-list-cycle/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_linked_list_cycle.py) |
 | Stacks: Balanced Brackets | [Problem](https://www.hackerrank.com/challenges/ctci-balanced-brackets/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_balanced_brackets.py) |
+| Queues: A Tale of Two Stacks | [Problem](https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_queue_using_two_stacks.py) |
