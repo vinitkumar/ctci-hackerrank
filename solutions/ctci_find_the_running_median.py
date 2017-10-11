@@ -1,9 +1,27 @@
 """ Heaps: Find the Running Median """
 
-def get_array_after_insertion(numbers, new_number):
+def get_insertion_index(numbers, new_number, high_index, low_index):
     """
     Given a sorted array, returns the index at which to 
     insert the new number
+    """
+
+    if high_index == low_index:
+        return low_index
+
+    midpoint_index = (low_index + high_index) // 2
+    if new_number >= numbers[midpoint_index] and new_number <= numbers[midpoint_index + 1]:
+        return midpoint_index + 1
+    elif new_number < numbers[midpoint_index]:
+        return get_insertion_index(numbers, new_number, midpoint_index, low_index)
+    else:
+        return get_insertion_index(numbers, new_number, high_index, midpoint_index + 1)
+
+
+def get_array_after_insertion(numbers, new_number):
+    """
+    Given a sorted array, adds a new number and keeps
+    the array sorted
     """
 
     if new_number < numbers[0]:
@@ -22,7 +40,15 @@ class SortedList(object):
 
     def insert_new(self, new_number):
         if self.numbers:
-            self.numbers = get_array_after_insertion(self.numbers, new_number)
+            insertion_index = get_insertion_index(
+                self.numbers, new_number, len(self.numbers), 0)
+            
+            if insertion_index == len(self.numbers):
+                self.numbers.append(new_number)
+            else:
+                self.numbers = self.numbers[:insertion_index] + [new_number] + \
+                        self.numbers[insertion_index:]
+            # self.numbers = get_array_after_insertion(self.numbers, new_number)
         else:
             self.numbers.append(new_number)
 
