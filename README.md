@@ -11,3 +11,4 @@ Solutions to Hackerrank problems in Python
 | Linked Lists: Detect a Cycle | [Problem](https://www.hackerrank.com/challenges/ctci-linked-list-cycle/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_linked_list_cycle.py) |
 | Stacks: Balanced Brackets | [Problem](https://www.hackerrank.com/challenges/ctci-balanced-brackets/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_balanced_brackets.py) |
 | Queues: A Tale of Two Stacks | [Problem](https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_queue_using_two_stacks.py) |
+| Heaps: Find the Running Median | [Problem](https://www.hackerrank.com/challenges/ctci-find-the-running-median/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ctci_find_the_running_median.py) |
