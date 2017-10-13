@@ -4,72 +4,28 @@ import os
 import heapq
 
 
-class Heap(object):
-    def __init__(self):
-        self.numbers = list()
-
-    def size(self):
-        return len(self.numbers)
-
-    def __repr__(self):
-        return str(self.numbers)
-
-
-class MinHeap(Heap):
-
-    def push_new(self, number):
-        heapq.heappush(self.numbers, number)
-
-    def pop_smallest(self):
-        return heapq.heappop(self.numbers)
-
-    def get_smallest(self):
-        return heapq.nsmallest(1, self.numbers)[0]
-
-class MaxHeap(Heap):
-
-    def push_new(self, number):
-        heapq.heappush(self.numbers, -1 * number)
-
-    def pop_largest(self):
-        return -1 * heapq.heappop(self.numbers)
-
-    def get_largest(self):
-        return -1 * heapq.nsmallest(1, self.numbers)[0]
-
-
 class MedianHeap(object):
     def __init__(self):
-        self.small_numbers = MaxHeap()
-        self.large_numbers = MinHeap()
+        self.small_numbers = []
+        self.large_numbers = []
 
     def insert_new(self, new_number):
-        
-        if self.small_numbers.size() == 0:
-            self.small_numbers.push_new(new_number)
-        elif self.small_numbers.get_largest() < new_number:
-            self.large_numbers.push_new(new_number)
+        smallest_large_number = heapq.heappushpop(self.large_numbers, new_number)
+        largest_small_number = -heapq.heappushpop(self.small_numbers, -smallest_large_number)
+
+        if len(self.large_numbers) > len(self.small_numbers):
+            heapq.heappush(self.small_numbers, -largest_small_number)
         else:
-            self.small_numbers.push_new(new_number)
-
-        if self.small_numbers.size() > self.large_numbers.size() + 1:
-            number_to_move = self.small_numbers.pop_largest()
-            self.large_numbers.push_new(number_to_move)
-
-        if self.large_numbers.size() > self.small_numbers.size() + 1:
-            number_to_move = self.large_numbers.pop_smallest()
-            self.small_numbers.push_new(number_to_move)
+            heapq.heappush(self.large_numbers, largest_small_number)
 
         # print("small heap: ", self.small_numbers)
         # print("large heap: ", self.large_numbers)
 
     def get_median(self):
-        if self.small_numbers.size() > self.large_numbers.size():
-            return self.small_numbers.get_largest() / 1
-        elif self.large_numbers.size() > self.small_numbers.size():
-            return self.large_numbers.get_smallest() / 1
+        if len(self.large_numbers) > len(self.small_numbers):
+            return self.large_numbers[0] / 1
         else:
-            return (self.small_numbers.get_largest() + self.large_numbers.get_smallest()) / 2
+            return (self.large_numbers[0] - self.small_numbers[0]) / 2
 
 
 def main():
