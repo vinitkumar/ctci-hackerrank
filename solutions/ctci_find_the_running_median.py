@@ -1,5 +1,8 @@
 """ Heaps: Find the Running Median """
 
+import os
+
+
 def get_insertion_index(numbers, new_number, high_index, low_index):
     """
     Given a sorted array, returns the index at which to 
@@ -82,7 +85,8 @@ def main():
 
 def main_test():
     """ Main function """
-    with open("/Users/jvineet/Downloads/input03.txt") as input_file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + \
+            "/../tmp/input03.txt") as input_file:
         count_nums = int(input_file.readline().strip())
         numbers = SortedList()
         for _ in range(count_nums):
