@@ -6,16 +6,22 @@ def get_insertion_index(numbers, new_number, high_index, low_index):
     insert the new number
     """
 
+    # print("high: ", high_index, ", low: ", low_index)
+
     if high_index == low_index:
-        return low_index
+        return high_index + 1 if new_number > numbers[high_index] else high_index
 
     midpoint_index = (low_index + high_index) // 2
-    if new_number >= numbers[midpoint_index] and new_number <= numbers[midpoint_index + 1]:
-        return midpoint_index + 1
-    elif new_number < numbers[midpoint_index]:
-        return get_insertion_index(numbers, new_number, midpoint_index, low_index)
+    if new_number >= numbers[midpoint_index]:
+        # print("greater than mid")
+        if (midpoint_index < len(numbers) - 1 and new_number <= numbers[midpoint_index + 1]) or \
+                midpoint_index == len(numbers) - 1:
+            return midpoint_index + 1
+        else:
+            return get_insertion_index(numbers, new_number, high_index, midpoint_index + 1)
     else:
-        return get_insertion_index(numbers, new_number, high_index, midpoint_index + 1)
+        # print("lesser than mid")
+        return get_insertion_index(numbers, new_number, midpoint_index, low_index)
 
 
 def get_array_after_insertion(numbers, new_number):
@@ -41,7 +47,9 @@ class SortedList(object):
     def insert_new(self, new_number):
         if self.numbers:
             insertion_index = get_insertion_index(
-                self.numbers, new_number, len(self.numbers), 0)
+                self.numbers, new_number, len(self.numbers) - 1, 0)
+
+            # print("insertion index: ", insertion_index)
             
             if insertion_index == len(self.numbers):
                 self.numbers.append(new_number)
@@ -51,6 +59,8 @@ class SortedList(object):
             # self.numbers = get_array_after_insertion(self.numbers, new_number)
         else:
             self.numbers.append(new_number)
+
+        # print("new sorted list: ", self.numbers)
 
     def get_median(self):
         list_length = len(self.numbers)
@@ -70,6 +80,16 @@ def main():
         numbers.insert_new(new_number)
         print(numbers.get_median())
 
+def main_test():
+    """ Main function """
+    with open("/Users/jvineet/Downloads/input03.txt") as input_file:
+        count_nums = int(input_file.readline().strip())
+        numbers = SortedList()
+        for _ in range(count_nums):
+            new_number = int(input_file.readline().strip())
+            numbers.insert_new(new_number)
+            print(numbers.get_median())
 
 if __name__ == '__main__':
     main()
+    # main_test()
