@@ -1,83 +1,81 @@
 """ Heaps: Find the Running Median """
 
 import os
+import heapq
 
 
-def get_insertion_index(numbers, new_number, high_index, low_index):
-    """
-    Given a sorted array, returns the index at which to 
-    insert the new number
-    """
-
-    # print("high: ", high_index, ", low: ", low_index)
-
-    if high_index == low_index:
-        return high_index + 1 if new_number > numbers[high_index] else high_index
-
-    midpoint_index = (low_index + high_index) // 2
-    if new_number >= numbers[midpoint_index]:
-        # print("greater than mid")
-        if (midpoint_index < len(numbers) - 1 and new_number <= numbers[midpoint_index + 1]) or \
-                midpoint_index == len(numbers) - 1:
-            return midpoint_index + 1
-        else:
-            return get_insertion_index(numbers, new_number, high_index, midpoint_index + 1)
-    else:
-        # print("lesser than mid")
-        return get_insertion_index(numbers, new_number, midpoint_index, low_index)
-
-
-def get_array_after_insertion(numbers, new_number):
-    """
-    Given a sorted array, adds a new number and keeps
-    the array sorted
-    """
-
-    if new_number < numbers[0]:
-        return [new_number] + numbers
-
-    for index in range(len(numbers) - 1):
-        if new_number > numbers[index] and new_number <= numbers[index + 1]:
-            return numbers[:index + 1] + [new_number] + numbers[index + 1:]
-    
-    return numbers + [new_number]
-
-
-class SortedList(object):
+class Heap(object):
     def __init__(self):
         self.numbers = list()
 
+    def size(self):
+        return len(self.numbers)
+
+    def __repr__(self):
+        return str(self.numbers)
+
+
+class MinHeap(Heap):
+
+    def push_new(self, number):
+        heapq.heappush(self.numbers, number)
+
+    def pop_smallest(self):
+        return heapq.heappop(self.numbers)
+
+    def get_smallest(self):
+        return heapq.nsmallest(1, self.numbers)[0]
+
+class MaxHeap(Heap):
+
+    def push_new(self, number):
+        heapq.heappush(self.numbers, -1 * number)
+
+    def pop_largest(self):
+        return -1 * heapq.heappop(self.numbers)
+
+    def get_largest(self):
+        return -1 * heapq.nsmallest(1, self.numbers)[0]
+
+
+class MedianHeap(object):
+    def __init__(self):
+        self.small_numbers = MaxHeap()
+        self.large_numbers = MinHeap()
+
     def insert_new(self, new_number):
-        if self.numbers:
-            insertion_index = get_insertion_index(
-                self.numbers, new_number, len(self.numbers) - 1, 0)
-
-            # print("insertion index: ", insertion_index)
-            
-            if insertion_index == len(self.numbers):
-                self.numbers.append(new_number)
-            else:
-                self.numbers = self.numbers[:insertion_index] + [new_number] + \
-                        self.numbers[insertion_index:]
-            # self.numbers = get_array_after_insertion(self.numbers, new_number)
+        
+        if self.small_numbers.size() == 0:
+            self.small_numbers.push_new(new_number)
+        elif self.small_numbers.get_largest() < new_number:
+            self.large_numbers.push_new(new_number)
         else:
-            self.numbers.append(new_number)
+            self.small_numbers.push_new(new_number)
 
-        # print("new sorted list: ", self.numbers)
+        if self.small_numbers.size() > self.large_numbers.size() + 1:
+            number_to_move = self.small_numbers.pop_largest()
+            self.large_numbers.push_new(number_to_move)
+
+        if self.large_numbers.size() > self.small_numbers.size() + 1:
+            number_to_move = self.large_numbers.pop_smallest()
+            self.small_numbers.push_new(number_to_move)
+
+        # print("small heap: ", self.small_numbers)
+        # print("large heap: ", self.large_numbers)
 
     def get_median(self):
-        list_length = len(self.numbers)
-        if list_length % 2 == 0 and list_length != 0:
-            return float((self.numbers[(list_length // 2) - 1] + \
-                    self.numbers[(list_length // 2)]) / 2)
+        if self.small_numbers.size() > self.large_numbers.size():
+            return self.small_numbers.get_largest() / 1
+        elif self.large_numbers.size() > self.small_numbers.size():
+            return self.large_numbers.get_smallest() / 1
         else:
-            return float(self.numbers[list_length // 2])
+            return (self.small_numbers.get_largest() + self.large_numbers.get_smallest()) / 2
 
 
 def main():
     """ Main function """
     count_nums = int(input().strip())
-    numbers = SortedList()
+    numbers = MedianHeap()
     for _ in range(count_nums):
         new_number = int(input().strip())
         numbers.insert_new(new_number)
@@ -88,7 +86,7 @@ def main_test():
     with open(os.path.dirname(os.path.abspath(__file__)) + \
             "/../tmp/input03.txt") as input_file:
         count_nums = int(input_file.readline().strip())
-        numbers = SortedList()
+        numbers = MedianHeap()
         for _ in range(count_nums):
             new_number = int(input_file.readline().strip())
             numbers.insert_new(new_number)
