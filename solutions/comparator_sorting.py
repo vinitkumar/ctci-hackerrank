@@ -1,5 +1,6 @@
 ''' Sorting: Comparator '''
 
+import json
 from functools import cmp_to_key
 
 
@@ -7,14 +8,32 @@ class Player(object):
     ''' Player object containing name and score '''
 
     def __init__(self, name, score):
-        pass
+        self.name = name
+        self.score = score
 
     def __repr__(self):
-        pass
+        object_dict = {
+            "name": self.name,
+            "score": self.score
+        }
+        return json.dumps(object_dict)
 
-    def comparator(self, player_1, player_2):
+    @staticmethod
+    def comparator(player_1, player_2):
         ''' Custom comparator '''
-        pass
+        if player_1.score > player_2.score:
+            return -1
+
+        if player_1.score < player_2.score:
+            return 1
+
+        if player_1.name < player_2.name:
+            return -1
+
+        if player_1.name > player_2.name:
+            return 1
+
+        return 0
 
 
 def main():
