@@ -5,6 +5,7 @@ import queue
 
 DISTANCE_FACTOR = 6
 
+
 class Graph(object):
     ''' Graph '''
 
@@ -18,24 +19,41 @@ class Graph(object):
 
     def connect(self, node_1, node_2):
         ''' creates an edge from node_1 to node_2 '''
+
         node_set = self.edges[node_1]
         node_set.add(node_2)
         self.edges[node_1] = node_set
+
+        node_set = self.edges[node_2]
+        node_set.add(node_1)
+        self.edges[node_2] = node_set
+
+        # print("connecting", node_1, "and", node_2)
+        # print(node_set)
+        # print(self.edges)
 
     def find_all_distances(self, node_index):
         '''
         calculates distance between the given node and all other nodes
         in the graph
         '''
+        print(self.edges)
         possible_paths = queue.Queue()
-        possible_paths.put(node_index)
-        iteration = 1
+        start_node = (node_index, 0)  # (index, relative_distance)
+        possible_paths.put(start_node)
+        traversed_nodes = set()
+        # print("starting with", node_index)
+
         while not possible_paths.empty():
             current_node = possible_paths.get()
-            for child_node in list(self.edges[current_node]):
-                self.distances[child_node] = int(iteration * DISTANCE_FACTOR)
-                possible_paths.put(child_node)
-            iteration += 1
+            traversed_nodes.add(current_node[0])
+
+            for child_node in list(self.edges[current_node[0]]):
+                distance = int((current_node[1] + 1) * DISTANCE_FACTOR)
+                # print("child_node:", child_node, ", distance:", distance)
+                if child_node not in traversed_nodes:
+                    self.distances[child_node] = distance
+                    possible_paths.put((child_node, current_node[1] + 1))
 
         sorted_distances = list()
         for index in range(self.node_count):
@@ -61,5 +79,30 @@ def main():
         distances = graph.find_all_distances(starting_node_index - 1)
         print(" ".join(distances))
 
+
+def main_test():
+    ''' Testing Main function '''
+
+    input_file_path = "solutions/tmp/input06.txt"
+    input_file = open(input_file_path)
+
+    num_queries = int(input_file.readline().strip())
+    for _ in range(num_queries):
+        node_count, edge_count = \
+            [int(value) for value in input_file.readline().strip().split()]
+        graph = Graph(node_count)
+
+        for _ in range(edge_count):
+            node_1, node_2 = \
+                [int(x) for x in input_file.readline().strip().split()]
+            graph.connect(node_1 - 1, node_2 - 1)
+
+        starting_node_index = int(input_file.readline().strip())
+        distances = graph.find_all_distances(starting_node_index - 1)
+        print(" ".join(distances))
+
+    input_file.close()
+
 if __name__ == '__main__':
-    main()
+    # main()
+    main_test()
