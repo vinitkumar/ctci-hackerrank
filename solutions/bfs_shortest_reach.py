@@ -37,23 +37,28 @@ class Graph(object):
         calculates distance between the given node and all other nodes
         in the graph
         '''
-        print(self.edges)
+        # print(self.edges)
         possible_paths = queue.Queue()
-        start_node = (node_index, 0)  # (index, relative_distance)
-        possible_paths.put(start_node)
-        traversed_nodes = set()
+        # start_node = (node_index, 0)  # (index, relative_distance)
+        possible_paths.put(node_index)
+        traversed_nodes = set([node_index])
+        self.distances[node_index] = 0
         # print("starting with", node_index)
 
         while not possible_paths.empty():
             current_node = possible_paths.get()
-            traversed_nodes.add(current_node[0])
+            # print("working on node ", current_node)
+            # print("children are ", self.edges[current_node])
 
-            for child_node in list(self.edges[current_node[0]]):
-                distance = int((current_node[1] + 1) * DISTANCE_FACTOR)
+            distance = int(self.distances[current_node] + DISTANCE_FACTOR)
+            # print("calculated distance: ", distance)
+            for child_node in self.edges[current_node]:
                 # print("child_node:", child_node, ", distance:", distance)
                 if child_node not in traversed_nodes:
                     self.distances[child_node] = distance
-                    possible_paths.put((child_node, current_node[1] + 1))
+                    possible_paths.put(child_node)
+                    traversed_nodes.add(child_node)
+            # print("distances ", self.distances)
 
         sorted_distances = list()
         for index in range(self.node_count):
@@ -104,5 +109,5 @@ def main_test():
     input_file.close()
 
 if __name__ == '__main__':
-    # main()
-    main_test()
+    main()
+    # main_test()
