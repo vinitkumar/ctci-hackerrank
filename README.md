@@ -25,3 +25,4 @@ Solutions to Hackerrank problems in Python
 | DP: Coin Change | [Problem](https://www.hackerrank.com/challenges/ctci-coin-change/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/coin_change.py) |
 | Sorting: Comparator | [Problem](https://www.hackerrank.com/challenges/ctci-comparator-sorting/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/comparator_sorting.py) |
 | BFS: Shortest Reach in a Graph | [Problem](https://www.hackerrank.com/challenges/ctci-bfs-shortest-reach/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/bfs_shortest_reach.py) |
+| DFS: Connected Cell in a Grid | [Problem](https://www.hackerrank.com/challenges/ctci-connected-cell-in-a-grid/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/connected_cell_in_a_grid.py) |
