@@ -1,5 +1,6 @@
 ''' DFS: Connected Cell in a Grid '''
 
+
 def traverse_neighbourhood(matrix, row_number, column_number, traversed_ones, ones_count):
     '''
     Given the location of a 1, traverse it's neighbourhood, count all the
@@ -7,9 +8,9 @@ def traverse_neighbourhood(matrix, row_number, column_number, traversed_ones, on
     return the number of 1s in that area
     '''
 
-    traversed_ones.add((row_number, column_number))
+    # print("seed point ", (row_number, column_number))
     region_offsets = [-1, 0, 1]
-
+    ones_scores = list()
     for row_offset in region_offsets:
         for col_offset in region_offsets:
             adjacent_row_number = max(0, row_number + row_offset)
@@ -18,26 +19,30 @@ def traverse_neighbourhood(matrix, row_number, column_number, traversed_ones, on
                 if matrix[adjacent_row_number][adjacent_col_number] == 1 \
                         and (adjacent_row_number, adjacent_col_number) not in traversed_ones:
                     # print("recursing at ", (adjacent_row_number, adjacent_col_number))
-                    ones_count += traverse_neighbourhood(
-                        matrix, adjacent_row_number, adjacent_col_number,
-                        traversed_ones, ones_count)
+                    traversed_ones.add((adjacent_row_number, adjacent_col_number))
+                    ones_scores.append(
+                        traverse_neighbourhood(
+                            matrix, adjacent_row_number, adjacent_col_number, traversed_ones,
+                            ones_count)
+                    )
             except IndexError:
                 pass
+    # print("ones_count for", (row_number, column_number), "is", sum(ones_scores) + ones_count)
 
-    return ones_count
+    return sum(ones_scores) + ones_count
 
 def get_biggest_region(matrix, num_rows, num_cols):
     ''' Calculates the number of cells in the biggest region of 1s'''
 
-    traversed_ones = set()
     max_ones_region_count = 0
+    traversed_ones = set()
 
     for row_number in range(num_rows):
         for column_number in range(num_cols):
             if matrix[row_number][column_number] == 1 \
                     and (row_number, column_number) not in traversed_ones:
 
-                # print("found seed point at ", (row_number, column_number))
+                traversed_ones.add((row_number, column_number))
                 ones_count = traverse_neighbourhood(
                     matrix, row_number, column_number, traversed_ones, 1)
 
