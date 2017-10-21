@@ -22,9 +22,15 @@ Solutions to Hackerrank problems in Python
 |  |  |  |
 |---|:---:|:---:|
 | Sorting: Bubble Sort | [Problem](https://www.hackerrank.com/challenges/ctci-bubble-sort/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/bubble_sort.py) |
-| DP: Coin Change | [Problem](https://www.hackerrank.com/challenges/ctci-coin-change/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/coin_change.py) |
 | Sorting: Comparator | [Problem](https://www.hackerrank.com/challenges/ctci-comparator-sorting/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/comparator_sorting.py) |
 | BFS: Shortest Reach in a Graph | [Problem](https://www.hackerrank.com/challenges/ctci-bfs-shortest-reach/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/bfs_shortest_reach.py) |
 | DFS: Connected Cell in a Grid | [Problem](https://www.hackerrank.com/challenges/ctci-connected-cell-in-a-grid/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/connected_cell_in_a_grid.py) |
-| Bit Manipulation: Lonely Integer | [Problem](https://www.hackerrank.com/challenges/ctci-lonely-integer/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/lonely_integer.py) |
 | Binary Search: Ice Cream Parlor | [Problem](https://www.hackerrank.com/challenges/ctci-ice-cream-parlor/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ice_cream_parlor.py) |
+
+### Techniques/Concepts
+
+|  |  |  |
+|---|:---:|:---:|
+| DP: Coin Change | [Problem](https://www.hackerrank.com/challenges/ctci-coin-change/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/coin_change.py) |
+| Bit Manipulation: Lonely Integer | [Problem](https://www.hackerrank.com/challenges/ctci-lonely-integer/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/lonely_integer.py) |
+| Recursion: Fibonacci Numbers | [Problem](https://www.hackerrank.com/challenges/ctci-fibonacci-numbers/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/fibonacci_numbers.py) |
