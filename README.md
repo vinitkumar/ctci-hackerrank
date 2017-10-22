@@ -32,3 +32,6 @@ Solutions to Hackerrank Cracking the Coding Interview problems in Python
 | DP: Coin Change | [Problem](https://www.hackerrank.com/challenges/ctci-coin-change/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/coin_change.py) |
 | Bit Manipulation: Lonely Integer | [Problem](https://www.hackerrank.com/challenges/ctci-lonely-integer/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/lonely_integer.py) |
 | Recursion: Fibonacci Numbers | [Problem](https://www.hackerrank.com/challenges/ctci-fibonacci-numbers/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/fibonacci_numbers.py) |
+| Time Complexity: Primality | [Problem](https://www.hackerrank.com/challenges/ctci-big-o/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/big_o.py) |
+
+<!-- |  | [Problem]() | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/) | -->
