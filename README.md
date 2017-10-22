@@ -1,10 +1,8 @@
-# Hackerrank Solutions
+# Cracking the Coding interview
 
-Solutions to Hackerrank problems in Python
+Solutions to Hackerrank Cracking the Coding Interview problems in Python
 
-## Cracking the Coding interview
-
-### Data Structures
+## Data Structures
 
 |  |  |  |
 |---|:---:|:---:|
@@ -17,7 +15,7 @@ Solutions to Hackerrank problems in Python
 | Queues: A Tale of Two Stacks | [Problem](https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/queue_using_two_stacks.py) |
 | Heaps: Find the Running Median | [Problem](https://www.hackerrank.com/challenges/ctci-find-the-running-median/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/find_the_running_median.py) |
 
-### Algorithms
+## Algorithms
 
 |  |  |  |
 |---|:---:|:---:|
@@ -27,7 +25,7 @@ Solutions to Hackerrank problems in Python
 | DFS: Connected Cell in a Grid | [Problem](https://www.hackerrank.com/challenges/ctci-connected-cell-in-a-grid/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/connected_cell_in_a_grid.py) |
 | Binary Search: Ice Cream Parlor | [Problem](https://www.hackerrank.com/challenges/ctci-ice-cream-parlor/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ice_cream_parlor.py) |
 
-### Techniques/Concepts
+## Techniques/Concepts
 
 |  |  |  |
 |---|:---:|:---:|
