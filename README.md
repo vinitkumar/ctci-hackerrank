@@ -24,6 +24,7 @@ Solutions to Hackerrank Cracking the Coding Interview problems in Python
 | BFS: Shortest Reach in a Graph | [Problem](https://www.hackerrank.com/challenges/ctci-bfs-shortest-reach/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/bfs_shortest_reach.py) |
 | DFS: Connected Cell in a Grid | [Problem](https://www.hackerrank.com/challenges/ctci-connected-cell-in-a-grid/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/connected_cell_in_a_grid.py) |
 | Binary Search: Ice Cream Parlor | [Problem](https://www.hackerrank.com/challenges/ctci-ice-cream-parlor/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/ice_cream_parlor.py) |
+| Merge Sort: Counting Inversions | [Problem](https://www.hackerrank.com/challenges/ctci-merge-sort/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/merge_sort.py) |
 
 ## Techniques/Concepts
 
