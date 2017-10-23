@@ -1,8 +1,64 @@
 ''' Merge Sort: Counting Inversions '''
 
+def merge_sorted_lists(list_1, list_2):
+    '''
+    Merges 2 sorted lists and returns a merged list
+    and the count of inversions done
+    '''
+
+    # print("merging ", list_1, "and", list_2)
+
+    index_1 = 0
+    index_2 = 0
+    merged_list = list()
+    inversions = 0
+
+    while index_1 < len(list_1) and index_2 < len(list_2):
+        if list_1[index_1] <= list_2[index_2]:
+            merged_list.append(list_1[index_1])
+            index_1 += 1
+        else:
+            merged_list.append(list_2[index_2])
+            index_2 += 1
+            inversions += 1
+
+    if index_1 < len(list_1):
+        # inversions += len(list_1[index_1:])
+        merged_list += list_1[index_1:]
+    else:
+        merged_list += list_2[index_2:]
+
+    return merged_list, inversions
+
+
+def merge_sort(numbers):
+    ''' Performs a divide-and-conquer merge sort '''
+
+    if len(numbers) == 1:
+        return numbers, 0
+
+    mid = len(numbers) // 2
+    first_half, first_half_inversions = \
+        merge_sort(numbers[:mid])
+    second_half, second_half_inversions = \
+        merge_sort(numbers[mid:])
+    # print("first_half_inversions:", first_half_inversions)
+    # print("second_half_inversions:", second_half_inversions)
+
+    merged_list, merge_inversions = \
+        merge_sorted_lists(first_half, second_half)
+    # print("merge_inversions:", merge_inversions)
+
+    return \
+        merged_list, merge_inversions + first_half_inversions + \
+        second_half_inversions
+
 def count_inversions(numbers):
     ''' Counts the number of inversions required to sort an array '''
-    return 0
+
+    _, inversions = merge_sort(numbers)
+    return inversions
+
 
 def main():
     ''' Main function '''
@@ -15,3 +71,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # print(merge_sorted_lists([1, 2], [1, 2, 3]))
+    # print(count_inversions([2, 1, 3, 1, 2]))
+    # print(count_inversions([1, 1, 1, 2, 2]))
