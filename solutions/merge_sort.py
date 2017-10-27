@@ -20,10 +20,9 @@ def merge_sorted_lists(list_1, list_2):
         else:
             merged_list.append(list_2[index_2])
             index_2 += 1
-            inversions += len(list_1[index_1:])
+            inversions += len(list_1) - index_1
 
     if index_1 < len(list_1):
-        # inversions += len(list_1[index_1:])
         merged_list += list_1[index_1:]
     else:
         merged_list += list_2[index_2:]
@@ -50,13 +49,13 @@ def merge_sort(numbers):
     # print("merge_inversions:", merge_inversions)
 
     return \
-        merged_list, merge_inversions + first_half_inversions + second_half_inversions
+        merged_list, \
+        merge_inversions + first_half_inversions + second_half_inversions
 
 def count_inversions(numbers):
     ''' Counts the number of inversions required to sort an array '''
 
-    merged_list, inversions = merge_sort(numbers)
-    # print(merged_list)
+    _, inversions = merge_sort(numbers)
     return inversions
 
 
@@ -82,7 +81,5 @@ def main_test():
         print(result)
 
 if __name__ == '__main__':
-    main()
-    # main_test()
-    # print(count_inversions([2, 1, 3, 1, 2]))
-    # print(count_inversions([1, 1, 1, 2, 2]))
+    # main()
+    main_test()
