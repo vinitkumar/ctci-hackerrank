@@ -1,6 +1,6 @@
 # Cracking the Coding interview
 
-Solutions to Hackerrank Cracking the Coding Interview problems in Python
+Solutions to all of the Hackerrank Cracking the Coding Interview problems in Python
 
 ## Data Structures
 
@@ -35,5 +35,3 @@ Solutions to Hackerrank Cracking the Coding Interview problems in Python
 | Recursion: Fibonacci Numbers | [Problem](https://www.hackerrank.com/challenges/ctci-fibonacci-numbers/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/fibonacci_numbers.py) |
 | Time Complexity: Primality | [Problem](https://www.hackerrank.com/challenges/ctci-big-o/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/big_o.py) |
 | Recursion: Davis' Staircase | [Problem](https://www.hackerrank.com/challenges/ctci-recursive-staircase/problem) | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/recursive_staircase.py) |
-
-<!-- |  | [Problem]() | [Solution](https://github.com/v1n337/hackerrank/blob/master/solutions/) | -->
