@@ -20,7 +20,7 @@ def merge_sorted_lists(list_1, list_2):
         else:
             merged_list.append(list_2[index_2])
             index_2 += 1
-            inversions += 1
+            inversions += len(list_1[index_1:])
 
     if index_1 < len(list_1):
         # inversions += len(list_1[index_1:])
@@ -34,7 +34,7 @@ def merge_sorted_lists(list_1, list_2):
 def merge_sort(numbers):
     ''' Performs a divide-and-conquer merge sort '''
 
-    if len(numbers) == 1:
+    if len(numbers) <= 1:
         return numbers, 0
 
     mid = len(numbers) // 2
@@ -50,13 +50,13 @@ def merge_sort(numbers):
     # print("merge_inversions:", merge_inversions)
 
     return \
-        merged_list, merge_inversions + first_half_inversions + \
-        second_half_inversions
+        merged_list, merge_inversions + first_half_inversions + second_half_inversions
 
 def count_inversions(numbers):
     ''' Counts the number of inversions required to sort an array '''
 
-    _, inversions = merge_sort(numbers)
+    merged_list, inversions = merge_sort(numbers)
+    # print(merged_list)
     return inversions
 
 
@@ -69,8 +69,20 @@ def main():
         result = count_inversions(numbers)
         print(result)
 
+def main_test():
+    ''' Main function '''
+
+    input_file = open("tmp/input13.txt")
+    num_datasets = int(input_file.readline().strip())
+    for _ in range(num_datasets):
+        dataset_size = int(input_file.readline().strip())
+        numbers = list(map(int, input_file.readline().strip().split(' ')))\
+                [:dataset_size]
+        result = count_inversions(numbers)
+        print(result)
+
 if __name__ == '__main__':
     main()
-    # print(merge_sorted_lists([1, 2], [1, 2, 3]))
+    # main_test()
     # print(count_inversions([2, 1, 3, 1, 2]))
     # print(count_inversions([1, 1, 1, 2, 2]))
