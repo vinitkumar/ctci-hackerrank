@@ -14,6 +14,16 @@ def merge_sorted_lists(list_1, size_1, list_2, size_2):
     inversions = 0
 
     while index_1 < size_1 and index_2 < size_2:
+        if list_1[size_1 - 1] < list_2[index_2]:
+            merged_list.extend(list_1[index_1:])
+            merged_list.extend(list_2[index_2:])
+            return merged_list, inversions
+        elif list_2[size_2 - 1] < list_1[index_1]:
+            merged_list.extend(list_2[index_2:])
+            merged_list.extend(list_1[index_1:])
+            return merged_list, \
+                inversions + ((size_2 - index_2) * (size_1 - index_1))
+
         if list_1[index_1] <= list_2[index_2]:
             merged_list.append(list_1[index_1])
             index_1 += 1
