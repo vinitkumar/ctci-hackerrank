@@ -1,6 +1,6 @@
 ''' Merge Sort: Counting Inversions '''
 
-def merge_sorted_lists(list_1, list_2):
+def merge_sorted_lists(list_1, size_1, list_2, size_2):
     '''
     Merges 2 sorted lists and returns a merged list
     and the count of inversions done
@@ -13,16 +13,16 @@ def merge_sorted_lists(list_1, list_2):
     merged_list = list()
     inversions = 0
 
-    while index_1 < len(list_1) and index_2 < len(list_2):
+    while index_1 < size_1 and index_2 < size_2:
         if list_1[index_1] <= list_2[index_2]:
             merged_list.append(list_1[index_1])
             index_1 += 1
         else:
             merged_list.append(list_2[index_2])
             index_2 += 1
-            inversions += len(list_1) - index_1
+            inversions += size_1 - index_1
 
-    if index_1 < len(list_1):
+    if index_1 < size_1:
         merged_list += list_1[index_1:]
     else:
         merged_list += list_2[index_2:]
@@ -30,22 +30,22 @@ def merge_sorted_lists(list_1, list_2):
     return merged_list, inversions
 
 
-def merge_sort(numbers):
+def merge_sort(numbers, numbers_size):
     ''' Performs a divide-and-conquer merge sort '''
 
-    if len(numbers) <= 1:
+    if numbers_size <= 1:
         return numbers, 0
 
-    mid = len(numbers) // 2
+    mid = numbers_size // 2
     first_half, first_half_inversions = \
-        merge_sort(numbers[:mid])
+        merge_sort(numbers[:mid], mid)
     second_half, second_half_inversions = \
-        merge_sort(numbers[mid:])
+        merge_sort(numbers[mid:], numbers_size - mid)
     # print("first_half_inversions:", first_half_inversions)
     # print("second_half_inversions:", second_half_inversions)
 
     merged_list, merge_inversions = \
-        merge_sorted_lists(first_half, second_half)
+        merge_sorted_lists(first_half, mid, second_half, numbers_size - mid)
     # print("merge_inversions:", merge_inversions)
 
     return \
@@ -55,7 +55,7 @@ def merge_sort(numbers):
 def count_inversions(numbers):
     ''' Counts the number of inversions required to sort an array '''
 
-    _, inversions = merge_sort(numbers)
+    _, inversions = merge_sort(numbers, len(numbers))
     return inversions
 
 
